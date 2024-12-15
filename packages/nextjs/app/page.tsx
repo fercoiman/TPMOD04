@@ -1,11 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import type { NextPage } from "next";
+import { formatEther, parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
-import { formatEther, parseEther } from "viem";
-import { useState } from "react";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
@@ -14,13 +14,13 @@ const Home: NextPage = () => {
   const { data: precioTokenA } = useScaffoldReadContract({
     contractName: "SimpleDEX",
     functionName: "getPrice",
-    args: ["0xfeb1a0bFaD2D54587D9AC52bd75798170509E9eF"],
+    args: ["0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"],
   });
 
   const { data: precioTokenB } = useScaffoldReadContract({
     contractName: "SimpleDEX",
     functionName: "getPrice",
-    args: ["0x55Cf144895cA45ff0E3a8F3F1708DabA78Db786c"],
+    args: ["0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"],
   });
 
   // Escribir en el contrato
@@ -54,14 +54,14 @@ const Home: NextPage = () => {
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token A"
           value={addAmountA}
-          onChange={(e) => setAddAmountA(e.target.value)}
+          onChange={e => setAddAmountA(e.target.value)}
         />
         <input
           type="text"
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token B"
           value={addAmountB}
-          onChange={(e) => setAddAmountB(e.target.value)}
+          onChange={e => setAddAmountB(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -88,14 +88,14 @@ const Home: NextPage = () => {
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token A"
           value={removeAmountA}
-          onChange={(e) => setRemoveAmountA(e.target.value)}
+          onChange={e => setRemoveAmountA(e.target.value)}
         />
         <input
           type="text"
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token B"
           value={removeAmountB}
-          onChange={(e) => setRemoveAmountB(e.target.value)}
+          onChange={e => setRemoveAmountB(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -122,7 +122,7 @@ const Home: NextPage = () => {
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token A"
           value={swapAmountA}
-          onChange={(e) => setSwapAmountA(e.target.value)}
+          onChange={e => setSwapAmountA(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -149,7 +149,7 @@ const Home: NextPage = () => {
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token B"
           value={swapAmountB}
-          onChange={(e) => setSwapAmountB(e.target.value)}
+          onChange={e => setSwapAmountB(e.target.value)}
         />
         <button
           className="btn btn-primary"
