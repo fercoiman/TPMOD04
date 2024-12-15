@@ -28,6 +28,8 @@ const accounts = deployerPrivateKey ? [deployerPrivateKey] : []; // devuelve str
 const etherscanApiKey = process.env.ETHERSCAN_MAINNET_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 const etherscanOptimisticApiKey = process.env.ETHERSCAN_OPTIMISTIC_API_KEY || "RM62RDISS1RH448ZY379NX625ASG1N633R";
 const basescanApiKey = process.env.BASESCAN_API_KEY || "ZZZEIPMT1MNJ8526VV2Y744CA7TNZR64G6";
+const scrollSepoliaApiKey = process.env.SCROLLSCAN_SEPOLIA_API_KEY;
+
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -144,6 +146,12 @@ const config: HardhatUserConfig = {
     scrollSepolia: {
       url: "https://sepolia-rpc.scroll.io",
       accounts,
+      verify: {
+        etherscan: {
+          apiUrl: "https://api-sepolia.scrollscan.com/api",
+          apiKey: scrollSepoliaApiKey,
+        },
+      }
     },
     scroll: {
       url: "https://rpc.scroll.io",

@@ -1,4 +1,4 @@
-N,import * as dotenv from "dotenv";
+import * as dotenv from "dotenv";
 dotenv.config();
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-ethers";
