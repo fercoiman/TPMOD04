@@ -27,9 +27,12 @@ const Home: NextPage = () => {
   const { writeContractAsync: writeSimpleDEXAsync } = useScaffoldWriteContract("SimpleDEX");
 
   // Estados para entradas del usuario
-  const [liquidityAmount, setLiquidityAmount] = useState("");
-  const [removeAmount, setRemoveAmount] = useState("");
-  const [swapAmount, setSwapAmount] = useState("");
+  const [addAmountA, setAddAmountA] = useState("");
+  const [addAmountB, setAddAmountB] = useState("");
+  const [removeAmountA, setRemoveAmountA] = useState("");
+  const [removeAmountB, setRemoveAmountB] = useState("");
+  const [swapAmountA, setSwapAmountA] = useState("");
+  const [swapAmountB, setSwapAmountB] = useState("");
 
   return (
     <div className="container mx-auto p-4">
@@ -49,9 +52,16 @@ const Home: NextPage = () => {
         <input
           type="text"
           className="input input-bordered w-full max-w-xs mb-2"
-          placeholder="Cantidad"
-          value={liquidityAmount}
-          onChange={(e) => setLiquidityAmount(e.target.value)}
+          placeholder="Cantidad de Token A"
+          value={addAmountA}
+          onChange={(e) => setAddAmountA(e.target.value)}
+        />
+        <input
+          type="text"
+          className="input input-bordered w-full max-w-xs mb-2"
+          placeholder="Cantidad de Token B"
+          value={addAmountB}
+          onChange={(e) => setAddAmountB(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -59,8 +69,7 @@ const Home: NextPage = () => {
             try {
               await writeSimpleDEXAsync({
                 functionName: "addLiquidity",
-                args: [],
-                value: parseEther(liquidityAmount),
+                args: [parseEther(addAmountA), parseEther(addAmountB)],
               });
             } catch (e) {
               console.error("Error agregando liquidez", e);
@@ -77,9 +86,16 @@ const Home: NextPage = () => {
         <input
           type="text"
           className="input input-bordered w-full max-w-xs mb-2"
-          placeholder="Cantidad"
-          value={removeAmount}
-          onChange={(e) => setRemoveAmount(e.target.value)}
+          placeholder="Cantidad de Token A"
+          value={removeAmountA}
+          onChange={(e) => setRemoveAmountA(e.target.value)}
+        />
+        <input
+          type="text"
+          className="input input-bordered w-full max-w-xs mb-2"
+          placeholder="Cantidad de Token B"
+          value={removeAmountB}
+          onChange={(e) => setRemoveAmountB(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -87,7 +103,7 @@ const Home: NextPage = () => {
             try {
               await writeSimpleDEXAsync({
                 functionName: "removeLiquidity",
-                args: [parseEther(removeAmount)],
+                args: [parseEther(removeAmountA), parseEther(removeAmountB)],
               });
             } catch (e) {
               console.error("Error eliminando liquidez", e);
@@ -105,8 +121,8 @@ const Home: NextPage = () => {
           type="text"
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token A"
-          value={swapAmount}
-          onChange={(e) => setSwapAmount(e.target.value)}
+          value={swapAmountA}
+          onChange={(e) => setSwapAmountA(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -114,7 +130,7 @@ const Home: NextPage = () => {
             try {
               await writeSimpleDEXAsync({
                 functionName: "swapAforB",
-                args: [parseEther(swapAmount)],
+                args: [parseEther(swapAmountA)],
               });
             } catch (e) {
               console.error("Error intercambiando Token A por B", e);
@@ -132,8 +148,8 @@ const Home: NextPage = () => {
           type="text"
           className="input input-bordered w-full max-w-xs mb-2"
           placeholder="Cantidad de Token B"
-          value={swapAmount}
-          onChange={(e) => setSwapAmount(e.target.value)}
+          value={swapAmountB}
+          onChange={(e) => setSwapAmountB(e.target.value)}
         />
         <button
           className="btn btn-primary"
@@ -141,7 +157,7 @@ const Home: NextPage = () => {
             try {
               await writeSimpleDEXAsync({
                 functionName: "swapBforA",
-                args: [parseEther(swapAmount)],
+                args: [parseEther(swapAmountB)],
               });
             } catch (e) {
               console.error("Error intercambiando Token B por A", e);
