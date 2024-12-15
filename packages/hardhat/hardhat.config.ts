@@ -22,7 +22,7 @@ const providerApiKey = process.env.ETHERSCAN_MAINNET_API_KEY;
 //const deployerPrivateKey =
 //process.env.__RUNTIME_DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY;
-const accounts = deployerPrivateKey ? [deployerPrivateKey] : [];
+const accounts = deployerPrivateKey ? [deployerPrivateKey] : []; // devuelve string vacio si undefined o null
 
 // If not set, it uses our block explorers default API keys.
 const etherscanApiKey = process.env.ETHERSCAN_MAINNET_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
