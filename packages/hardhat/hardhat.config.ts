@@ -19,15 +19,14 @@ import { string } from "hardhat/internal/core/params/argumentTypes";
 const providerApiKey = process.env.ETHERSCAN_MAINNET_API_KEY;
 // If not set, it uses the hardhat account 0 private key.
 // You can generate a random account with `yarn generate` or `yarn account:import` to import your existing PK
+/*
 const deployerPrivateKey =
 process.env.__RUNTIME_DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 const accounts = deployerPrivateKey ? [deployerPrivateKey] : [];
+*/
 
-/*
 const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY;
 const accounts = deployerPrivateKey ? [deployerPrivateKey] : []; // devuelve string vacio si undefined o null
-
-*/
 
 
 // If not set, it uses our block explorers default API keys.
@@ -53,7 +52,7 @@ const config: HardhatUserConfig = {
     ],
   },
 
-  defaultNetwork: "localhost",
+  defaultNetwork: "scrollSepolia",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
